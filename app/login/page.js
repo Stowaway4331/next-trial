@@ -21,7 +21,11 @@ const Login = () => {
 
   const searchParams = useSearchParams();
   const [loginError, setLoginError] = useState(
-    searchParams.get("error") ? "Invalid Credentials" : ""
+    searchParams.get("error")
+      ? searchParams.get("error") === "CredentialsSignin"
+        ? "Invalid Credentials"
+        : "Callback error. Try again"
+      : ""
   );
   const [submitting, setSubmitting] = useState(false);
 
