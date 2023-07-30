@@ -6,9 +6,9 @@ import connectDB from "../../../lib/mongodb";
 import UserModel from "../../../models/users";
 
 export const options: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
+  // session: {
+  //   strategy: "jwt",
+  // },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
@@ -40,8 +40,6 @@ export const options: NextAuthOptions = {
           password: string;
         };
 
-        // console.log(email, password);
-
         await connectDB();
 
         const user = await UserModel.findOne({ email });
@@ -50,7 +48,7 @@ export const options: NextAuthOptions = {
         const passwordMatch = await user.comparePassword(password);
         if (!passwordMatch) return null;
 
-        return user;
+        return user as any;
       },
     }),
   ],
