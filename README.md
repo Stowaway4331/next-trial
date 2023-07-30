@@ -1,6 +1,6 @@
 # About
 
-This is a sample login/signup page built with [Next.js](https://nextjs.org/) and [NextAuth.js](https://next-auth.js.org/) that demonstrates how a website can be proected by OAuth.
+This is a sample login/signup page built with [Next.js](https://nextjs.org/) and [NextAuth.js](https://next-auth.js.org/) that demonstrates how a website can be protected by OAuth.
 
 # Tech Stack
 
