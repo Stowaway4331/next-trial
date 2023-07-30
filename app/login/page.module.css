@@ -1,0 +1,48 @@
+.header {
+  display: none;
+}
+
+.sign_in_option {
+  /* font-size: small; */
+  background-color: white;
+  padding: 0.5em 1.25em;
+}
+
+.sign_in_option>p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.sign_in_option>p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form_container>div {
+  margin-bottom: 1.5em;
+}
+
+.form_section {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_section>input {
+  background-color: #f5f5f5;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+.form_section>input:focus {
+  background-color: #EAEAEA;
+  outline: none;
+}
+
+@media only screen and (min-width: 700px) {
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    background-color: black;
+  }
+}
