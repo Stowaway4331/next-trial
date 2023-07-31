@@ -72,6 +72,14 @@ const Login = () => {
     setSubmitting(false);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      console.log(e);
+      e.target.click();
+    }
+  };
+
   return (
     <div className="Login flex h-full">
       <section className={`${styles.header}`}>
@@ -108,6 +116,7 @@ const Login = () => {
                     });
                     setSubmitting(false);
                   }}
+                  onKeyDown={handleKeyDown}
                 >
                   Sign in with google
                 </span>
@@ -128,6 +137,7 @@ const Login = () => {
                     });
                     setSubmitting(false);
                   }}
+                  onKeyDown={handleKeyDown}
                 >
                   Sign in with github
                 </span>
