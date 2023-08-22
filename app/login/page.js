@@ -84,7 +84,7 @@ const Login = () => {
     <div className="Login flex h-full">
       <section className={`${styles.header}`}>
         <h1 className={`${montserrat.className} title text-white text-5xl`}>
-          NEXT<span className="text-sm">.JS</span>
+          Board.
         </h1>
       </section>
       <section className="body h-full w-full grid items-center">
@@ -187,6 +187,18 @@ const Login = () => {
                   })}
                 />
                 <p className="error text-red-400">{errors.password?.message}</p>
+              </div>
+              <div>
+                {loginOrSignup && (
+                  <Link
+                    href="#"
+                    onClick={() => {
+                      console.log("forgot password");
+                    }}
+                  >
+                    Forgot Password?
+                  </Link>
+                )}
               </div>
               <button
                 type="submit"

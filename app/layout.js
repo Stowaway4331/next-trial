@@ -7,8 +7,8 @@ import { lato } from "./utils/fonts";
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Login to Next.js",
-  description: "Mock login for NextJS",
+  title: "Dashboard - OpenInApp",
+  description: "Dashboard for OpenInApp users",
 };
 
 export default function RootLayout({ children }) {
