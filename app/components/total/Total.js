@@ -30,7 +30,7 @@ const Total = () => {
   useEffect(() => {
     async function getStats() {
       const res = await fetch(
-        "https://my-json-server.typicode.com/stowaway4331/demodb/stats"
+        "https://my-json-server.typicode.com/stowaway4331/next-trial-db/stats"
       );
       const data = await res.json();
       setStats(data);

@@ -26,7 +26,7 @@ const Activities = () => {
   useEffect(() => {
     async function getActivity() {
       const res = await fetch(
-        "https://my-json-server.typicode.com/stowaway4331/demodb/activity"
+        "https://my-json-server.typicode.com/stowaway4331/next-trial-db/activity"
       );
       const data = await res.json();
       setData(data);

@@ -20,7 +20,7 @@ const Schedule = () => {
   const getSchedules = useCallback(async function () {
     // console.log("Executed");
     const res = await fetch(
-      "https://my-json-server.typicode.com/stowaway4331/demodb/schedules"
+      "https://my-json-server.typicode.com/stowaway4331/next-trial-db/schedules"
     );
     // const data = limit ? res?.data.slice(0, 2) : res?.data;
     const data = await res.json();

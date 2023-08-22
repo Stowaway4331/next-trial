@@ -48,7 +48,7 @@ const Products = () => {
   useEffect(() => {
     async function getProducts() {
       const res = await fetch(
-        "https://my-json-server.typicode.com/stowaway4331/demodb/products"
+        "https://my-json-server.typicode.com/stowaway4331/next-trial-db/products"
       );
       const data = await res.json();
       // console.log(data);
