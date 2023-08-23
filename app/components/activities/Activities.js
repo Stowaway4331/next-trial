@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 import {
   ResponsiveContainer,
@@ -16,6 +17,8 @@ import { montserrat } from "../../utils/fonts";
 import { Dropdown } from "../../utils/icons";
 
 const Activities = () => {
+  const { data: session } = useSession();
+
   const year = new Date().getFullYear();
   const [data, setData] = useState([[]]);
   const months = ["january", "february", "march"];
@@ -33,8 +36,10 @@ const Activities = () => {
       // console.log(data);
     }
 
-    getActivity();
-  }, []);
+    if (session?.user) {
+      getActivity();
+    }
+  }, [session]);
 
   const maxY = 600;
 
@@ -48,7 +53,7 @@ const Activities = () => {
               className="flex items-center hover:cursor-pointer"
               onClick={() => {
                 let ele = document.getElementById("line-dropdown");
-                console.log(ele.style.height);
+                // console.log(ele.style.height);
                 if (ele.style.height === "0px" || ele.style.height === "")
                   ele.style.height = "auto";
                 else ele.style.height = "0px";
@@ -102,7 +107,7 @@ const Activities = () => {
         <LineChart
           width={600}
           height={300}
-          data={data[monthIndex]}
+          data={session?.user ? data[monthIndex] : []}
           margin={{
             // top: 50,
             // right: 20,
