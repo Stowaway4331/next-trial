@@ -20,7 +20,7 @@ const Header = () => {
         !document.getElementById("profile-info").contains(e.target) &&
         !(e.target == document.getElementById("profile-pic"))
       ) {
-        console.log("big bruh");
+        // console.log("big bruh");
         document.getElementById("profile-info").style.display = "none";
       }
     });
@@ -50,44 +50,53 @@ const Header = () => {
             width={28}
             height={28}
             // onMouseEnter={handleToggle}
-            onMouseEnter={() => {
-              document.getElementById("profile-info").style.display = "block";
-            }}
+            // onMouseEnter={() => {
+            //   document.getElementById("profile-info").style.display = "block";
+            // }}
             onClick={() => {
               let ele = document.getElementById("profile-info");
-              console.log(ele.style.display);
+              // console.log(ele.style.display);
               if (ele.style.display == "block") {
-                console.log("bruh");
+                // console.log("bruh");
                 ele.style.display = "none";
               } else {
-                console.log("no bruh");
+                // console.log("no bruh");
                 ele.style.display = "block";
               }
             }}
-            className="rounded-full"
+            className="rounded-full hover:cursor-pointer"
           />
           <div
             className="z-20 hidden rtl rounded-lg absolute right-6 top-20 overflow-hidden shadow-md box-shadow-0,0,0.5em,black/20"
             id="profile-info"
             // onMouseLeave={handleToggle}
-            onMouseLeave={() => {
-              document.getElementById("profile-info").style.display = "none";
-            }}
+            // onMouseLeave={() => {
+            //   document.getElementById("profile-info").style.display = "none";
+            // }}
           >
             <div className="ltr bg-white p-6 flex flex-col gap-6">
-              <p>
-                <Link href="#">Edit profile</Link>
-              </p>
+              {session?.user && (
+                <p>
+                  <Link href="#">Edit profile</Link>
+                </p>
+              )}
               <p>
                 Subscription date{" "}
-                <span className="block text-black/40">01/01/2023</span>
+                <span className="block text-black/40">
+                  {session?.user ? `01/01/2023` : `--`}
+                </span>
               </p>
               <p>
-                Duration <span className="block text-black/40">6 months</span>
+                Duration{" "}
+                <span className="block text-black/40">
+                  {session?.user ? `6 months` : `--`}
+                </span>
               </p>
               <p>
                 Subscription status{" "}
-                <span className="block text-black/40">Active</span>
+                <span className="block text-black/40">
+                  {session?.user ? `Active` : `--`}
+                </span>
               </p>
               {session?.user.email && (
                 <p className="text-black/40">{session?.user.email}</p>
