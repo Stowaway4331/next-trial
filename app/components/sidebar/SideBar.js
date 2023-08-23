@@ -53,7 +53,7 @@ const SideBar = () => {
   }, []);
 
   return (
-    // TODO: create toggle for showing and hiding dashboard menu
+    // TODO: create toggle icon for showing and hiding dashboard menu
     <section
       id="sidebar"
       onClick={() => {
