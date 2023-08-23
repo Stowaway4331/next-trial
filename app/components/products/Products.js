@@ -67,7 +67,7 @@ const Products = () => {
               className="flex items-center hover:cursor-pointer"
               onClick={() => {
                 let ele = document.getElementById("pie-dropdown");
-                console.log(typeof ele.style.height);
+                // console.log(typeof ele.style.height);
                 if (ele.style.height === "0px" || ele.style.height === "")
                   ele.style.height = "auto";
                 else ele.style.height = "0px";
