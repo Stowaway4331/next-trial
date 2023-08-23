@@ -36,8 +36,33 @@ const Total = () => {
       setStats(data);
     }
 
-    getStats();
-  }, []);
+    if (session?.user) {
+      getStats();
+    } else {
+      setStats([
+        {
+          id: 1,
+          name: "revenues",
+          data: "--",
+        },
+        {
+          id: 2,
+          name: "transactions",
+          data: "--",
+        },
+        {
+          id: 3,
+          name: "likes",
+          data: "--",
+        },
+        {
+          id: 4,
+          name: "users",
+          data: "--",
+        },
+      ]);
+    }
+  }, [session]);
 
   return (
     <div className="mb-12 grid md:grid-cols-4 grid-cols-2 gap-8 ">
@@ -53,7 +78,7 @@ const Total = () => {
             <h2 className={`${montserrat.className} text-xl`}>
               {(session?.user &&
                 cards[index].prefix + card.data.toLocaleString()) ||
-                "--"}
+                card.data}
             </h2>
           </div>
         );
