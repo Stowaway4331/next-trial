@@ -33,22 +33,25 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials, req) {
-        // console.log(credentials);
-
         const { email, password } = credentials as {
           email: string;
           password: string;
         };
 
-        await connectDB();
+        try {
+          await connectDB();
 
-        const user = await UserModel.findOne({ email });
-        if (!user) return null;
+          const user = await UserModel.findOne({ email });
+          if (!user) return null;
 
-        const passwordMatch = await user.comparePassword(password);
-        if (!passwordMatch) return null;
+          const passwordMatch = await user.comparePassword(password);
+          if (!passwordMatch) return null;
 
-        return user as any;
+          return user as any;
+        } catch (error) {
+          console.error("Credentials authorize failed:", error);
+          return null;
+        }
       },
     }),
   ],

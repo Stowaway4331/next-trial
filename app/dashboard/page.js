@@ -13,14 +13,14 @@ const Dashboard = () => {
   const { data: session } = useSession();
 
   return (
-    <main className="p-8 md:flex">
+    <main className="min-h-screen bg-bg p-4 md:p-8 md:flex">
       <SideBar />
-      <div className="md:ml-8 w-full">
+      <div className="md:ml-8 w-full max-w-full">
         <Header />
         <Total />
         <Activities />
         {session?.user && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <Products />
             <Schedule />
           </div>

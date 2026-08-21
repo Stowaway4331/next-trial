@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import { montserrat } from "../../utils/fonts";
 
 const Schedule = () => {
-  const COLORS = ["#EE8484", "#F6DC7D", "#98D89E"];
+  const COLORS = ["#F08787", "#F7CE68", "#7FD696"];
 
   const [data, setData] = useState([]);
 
@@ -49,13 +49,13 @@ const Schedule = () => {
   const [toggle, setToggle] = useState(true);
 
   return (
-    <div className="p-8 pb-4 bg-white rounded-xl w-full">
+    <div className="p-6 md:p-8 pb-4 bg-surface rounded-card shadow-soft-sm w-full">
       <div className="flex justify-between mb-4">
         <h3 className={`${montserrat.className} text-xl`}>
           Today&apos;s schedule
         </h3>
         <span
-          className="text-black/60 hover:text-black hover:cursor-pointer"
+          className="text-ink-muted hover:text-accent hover:cursor-pointer text-sm transition-colors"
           onClick={(e) => {
             if (!toggle) {
               // getSchedules(toggle);
@@ -73,17 +73,19 @@ const Schedule = () => {
           See All &gt;
         </span>
       </div>
-      <ul className="h-60 overflow-y-auto">
+      <ul className="h-60 overflow-y-auto flex flex-col gap-3 pb-4">
         {schedules.map((data, index) => {
           return (
             <li
-              className="p-4 mb-4 bg-[#f5f5f5] border-l-4 text-black text-opacity-60 last:mb-0"
+              className="p-4 rounded-xl bg-bg border-l-4 text-ink/70"
               key={index}
               style={{ borderColor: COLORS[index % COLORS.length] }}
             >
-              <h4 className={`${montserrat.className}`}>{data.subject}</h4>
-              <p>{data.time}</p>
-              <p>{data.location}</p>
+              <h4 className={`${montserrat.className} text-ink text-sm`}>
+                {data.subject}
+              </h4>
+              <p className="text-sm mt-0.5">{data.time}</p>
+              <p className="text-sm">{data.location}</p>
             </li>
           );
         })}

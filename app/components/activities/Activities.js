@@ -44,13 +44,13 @@ const Activities = () => {
   const maxY = 600;
 
   return (
-    <div className="bg-white p-8 rounded-2xl mb-12">
-      <div className="flex mb-4">
+    <div className="bg-surface p-6 md:p-8 rounded-card shadow-soft-sm mb-8">
+      <div className="flex mb-6">
         <div className="">
           <h3 className={`${montserrat.className} text-xl`}>Activities</h3>
-          <div className="text-black/60">
+          <div className="text-ink-muted">
             <span
-              className="flex items-center hover:cursor-pointer"
+              className="flex items-center hover:cursor-pointer text-sm"
               onClick={() => {
                 let ele = document.getElementById("line-dropdown");
                 // console.log(ele.style.height);
@@ -64,18 +64,18 @@ const Activities = () => {
               </span>
               &nbsp;
               {year}&nbsp;&nbsp;
-              <Dropdown fillColor="#00000050" />
+              <Dropdown fillColor="#9CA3AF" />
             </span>
             <ul
               id="line-dropdown"
-              className="absolute h-0 z-10 bg-white shadow-md overflow-hidden"
+              className="absolute h-0 z-10 bg-surface shadow-soft rounded-xl overflow-hidden mt-1"
             >
               {months.map((month, index) => {
                 return (
                   <li
                     id={month}
                     key={index}
-                    className="pr-2 hover:bg-black/10 hover:cursor-pointer capitalize border-b-2 border-bottom-black/60"
+                    className="px-3 py-2 hover:bg-accent-soft hover:cursor-pointer capitalize text-sm border-b border-line last:border-b-0"
                     onClick={() => {
                       setMonthIndex(index);
                       setCurrentMonth(month);
@@ -92,14 +92,14 @@ const Activities = () => {
             </ul>
           </div>
         </div>
-        <div className="ml-auto">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-[#9BDD7C] rounded-full"></div>
-            <span className="">User</span>
+        <div className="ml-auto text-sm">
+          <div className="flex items-center justify-end gap-2">
+            <div className="w-2.5 h-2.5 bg-[#9BDD7C] rounded-full"></div>
+            <span className="text-ink-muted">User</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-[#E9A0A0] rounded-full"></div>
-            <span className="">Guest</span>
+          <div className="flex items-center justify-end gap-2 mt-1.5">
+            <div className="w-2.5 h-2.5 bg-[#E9A0A0] rounded-full"></div>
+            <span className="text-ink-muted">Guest</span>
           </div>
         </div>
       </div>
@@ -114,15 +114,28 @@ const Activities = () => {
             left: -20,
           }}
         >
-          <CartesianGrid vertical={false} />
-          <Tooltip />
-          <XAxis axisLine={false} dataKey="name" tickSize={0} tickMargin={10} />
+          <CartesianGrid vertical={false} stroke="#EEEFF5" />
+          <Tooltip
+            contentStyle={{
+              borderRadius: "0.75rem",
+              border: "1px solid #E9EAF2",
+              boxShadow: "0 8px 24px -8px rgba(20,22,31,0.16)",
+            }}
+          />
+          <XAxis
+            axisLine={false}
+            dataKey="name"
+            tickSize={0}
+            tickMargin={10}
+            tick={{ fill: "#9CA3AF", fontSize: 12 }}
+          />
           <YAxis
             axisLine={false}
             domain={[0, maxY]}
             tickCount={maxY / 100 + 1}
             tickSize={0}
             tickMargin={10}
+            tick={{ fill: "#9CA3AF", fontSize: 12 }}
           />
           <Line
             type="monotone"

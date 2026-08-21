@@ -1,11 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f4f5fa;
+  --color-surface: #ffffff;
+  --color-ink: #14161f;
+  --color-ink-muted: #6b7280;
+  --color-ink-faint: #9ca3af;
+  --color-line: #e9eaf2;
+  --color-accent: #4f5fed;
+  --color-accent-dark: #3c4bd6;
+  --color-accent-soft: #eef0ff;
+  --color-sidebar: #14161f;
+  --color-sidebar-soft: #ffffff1a;
+
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 1px 2px rgba(20, 22, 31, 0.04), 0 16px 32px -16px rgba(20, 22, 31, 0.16);
+  --shadow-soft-sm: 0 1px 2px rgba(20, 22, 31, 0.05), 0 6px 14px -8px rgba(20, 22, 31, 0.14);
+  --shadow-focus: 0 0 0 4px var(--color-accent-soft);
+}
 
 :root {
-  /* --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255; */
   height: 100%;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,28 +30,21 @@
   -webkit-text-size-adjust: 100%;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
-
 @media only screen and (max-width: 360px) {
   :root {
     font-size: 10px;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: var(--font-lato);
   height: 100%;
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb)); */
-  background-color: #f5f5f5;
+  color: var(--color-ink);
+  background-color: var(--color-bg);
 }
 
 h1,
@@ -45,12 +54,43 @@ h4,
 h5,
 h6 {
   font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 a {
-  color: #346BD4;
+  color: var(--color-accent);
+  transition: color 150ms ease;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+::selection {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-dark);
+}
+
+/* Slim, unobtrusive scrollbars for card/list overflow areas */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-line);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ink-faint);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
 }

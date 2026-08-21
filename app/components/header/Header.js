@@ -27,32 +27,33 @@ const Header = () => {
   });
 
   return (
-    <div className="flex items-center mb-12 mt-4">
+    <div className="flex items-center mb-8 mt-2">
       <h2 className={`${montserrat.className} text-2xl`}>Dashboard</h2>
-      <div className="ml-auto flex items-center gap-8">
-        <div className="md:bg-white flex md:block px-3 py-1 rounded-full">
+      <div className="ml-auto flex items-center gap-4 md:gap-6">
+        <div className="md:bg-surface md:shadow-soft-sm flex md:block px-4 py-2.5 rounded-full">
           <input
-            className="hidden md:inline-block focus:outline-none pr-2"
+            className="hidden md:inline-block bg-transparent focus:outline-none pr-2 text-sm placeholder:text-ink-faint"
             type="text"
             // name="search"
             placeholder="Search..."
           />
-          <button type="submit">
+          <button
+            type="submit"
+            className="bg-surface shadow-soft-sm p-2 rounded-full md:bg-transparent md:shadow-none md:p-0"
+          >
             <SearchIcon />
           </button>
         </div>
-        <NotificationIcon />
-        <div className="">
+        <button className="bg-surface shadow-soft-sm p-2.5 rounded-full hover:shadow-soft transition-shadow">
+          <NotificationIcon />
+        </button>
+        <div className="relative">
           <Image
             id="profile-pic"
             src="/256x256.jpg"
             alt="profile-pic"
-            width={28}
-            height={28}
-            // onMouseEnter={handleToggle}
-            // onMouseEnter={() => {
-            //   document.getElementById("profile-info").style.display = "block";
-            // }}
+            width={36}
+            height={36}
             onClick={() => {
               let ele = document.getElementById("profile-info");
               // console.log(ele.style.display);
@@ -64,42 +65,38 @@ const Header = () => {
                 ele.style.display = "block";
               }
             }}
-            className="rounded-full hover:cursor-pointer"
+            className="rounded-full ring-2 ring-surface shadow-soft-sm hover:cursor-pointer"
           />
           <div
-            className="z-20 hidden rtl rounded-lg absolute right-6 top-20 overflow-hidden shadow-md box-shadow-0,0,0.5em,black/20"
+            className="z-20 hidden rtl rounded-2xl absolute right-0 top-14 overflow-hidden shadow-soft w-64"
             id="profile-info"
-            // onMouseLeave={handleToggle}
-            // onMouseLeave={() => {
-            //   document.getElementById("profile-info").style.display = "none";
-            // }}
           >
-            <div className="ltr bg-white p-6 flex flex-col gap-6">
+            <div className="ltr bg-surface p-6 flex flex-col gap-4">
               {session?.user && (
                 <p>
                   <Link href="#">Edit profile</Link>
                 </p>
               )}
-              <p>
+              <p className="text-sm">
                 Subscription date{" "}
-                <span className="block text-black/40">
+                <span className="block text-ink-muted">
                   {session?.user ? `01/01/2023` : `--`}
                 </span>
               </p>
-              <p>
+              <p className="text-sm">
                 Duration{" "}
-                <span className="block text-black/40">
+                <span className="block text-ink-muted">
                   {session?.user ? `6 months` : `--`}
                 </span>
               </p>
-              <p>
+              <p className="text-sm">
                 Subscription status{" "}
-                <span className="block text-black/40">
+                <span className="block text-ink-muted">
                   {session?.user ? `Active` : `--`}
                 </span>
               </p>
               {session?.user.email && (
-                <p className="text-black/40">{session?.user.email}</p>
+                <p className="text-ink-muted text-sm truncate">{session?.user.email}</p>
               )}
               {(session?.user.email && (
                 <button
@@ -108,8 +105,8 @@ const Header = () => {
                     signOut({ callbackUrl: "/login" });
                   }}
                   className={`${
-                    disabled ? `bg-black/60` : `bg-black`
-                  } w-max py-2 px-4 rounded-md text-white`}
+                    disabled ? `bg-ink-faint` : `bg-accent hover:bg-accent-dark`
+                  } w-max py-2 px-4 rounded-xl text-white text-sm transition-colors`}
                 >
                   Sign Out
                 </button>
@@ -120,8 +117,8 @@ const Header = () => {
                     signIn();
                   }}
                   className={`${
-                    disabled ? `bg-black/60` : `bg-black`
-                  } w-max py-2 px-4 rounded-md text-white`}
+                    disabled ? `bg-ink-faint` : `bg-accent hover:bg-accent-dark`
+                  } w-max py-2 px-4 rounded-xl text-white text-sm transition-colors`}
                 >
                   Sign In
                 </button>

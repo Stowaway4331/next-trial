@@ -16,17 +16,9 @@ const userSchema = new Schema<UserDocument, {}, Methods>({
   password: { type: String, required: true },
 });
 
-userSchema.pre("save", { document: true, query: false }, async function (next) {
-  // console.log("This from pre", this);
-
-  if (!this.isModified("password")) return next();
-  try {
-    // const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
-  } catch (error) {
-    throw error;
-  }
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 userSchema.methods.comparePassword = async function (password) {

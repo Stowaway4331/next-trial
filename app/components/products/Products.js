@@ -39,7 +39,7 @@ const Products = () => {
   const [monthlyProducts, setMonthlyProducts] = useState([[]]);
 
   const RADIAN = Math.PI / 180;
-  const COLORS = ["#EE8484", "#F6DC7D", "#98D89E"];
+  const COLORS = ["#F08787", "#F7CE68", "#7FD696"];
   const months = ["january", "february", "march"];
 
   const [monthIndex, setMonthIndex] = useState(0);
@@ -58,13 +58,13 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="@container bg-white p-8 rounded-2xl">
+    <div className="@container bg-surface p-6 md:p-8 rounded-card shadow-soft-sm">
       <div className="flex flex-col items-center @sm:block">
-        <div className="@sm:flex @sm:justify-around">
+        <div className="@sm:flex @sm:justify-between">
           <h3 className={`${montserrat.className} text-xl`}>Top Products</h3>
-          <div className="text-black/60">
+          <div className="text-ink-muted">
             <span
-              className="flex items-center hover:cursor-pointer"
+              className="flex items-center hover:cursor-pointer text-sm"
               onClick={() => {
                 let ele = document.getElementById("pie-dropdown");
                 // console.log(typeof ele.style.height);
@@ -78,18 +78,18 @@ const Products = () => {
               </span>
               &nbsp;
               {year}&nbsp;&nbsp;
-              <Dropdown fillColor="#00000050" />
+              <Dropdown fillColor="#9CA3AF" />
             </span>
             <ul
               id="pie-dropdown"
-              className="absolute h-0 z-10 bg-white shadow-md overflow-hidden rounded-md"
+              className="absolute h-0 z-10 bg-surface shadow-soft overflow-hidden rounded-xl mt-1"
             >
               {months.map((month, index) => {
                 return (
                   <li
                     // id={month}
                     key={index}
-                    className="pr-2 hover:bg-black/10 hover:cursor-pointer capitalize border-b-2 border-bottom-black/60"
+                    className="px-3 py-2 hover:bg-accent-soft hover:cursor-pointer capitalize text-sm border-b border-line last:border-b-0"
                     onClick={() => {
                       setMonthIndex(index);
                       // setCurrentMonth(month);
@@ -140,25 +140,27 @@ const Products = () => {
             {/* </ResponsiveContainer> */}
           </div>
           <div className="hidden @sm:block">
-            <ul>
+            <ul className="flex flex-col gap-3">
               {monthlyProducts[monthIndex].map((product, index) => {
                 return (
-                  <li key={index} className="">
-                    <div className="flex items-center gap-2">
+                  <li
+                    key={index}
+                    className="flex items-center justify-between gap-8"
+                  >
+                    <div className="flex items-center gap-2.5">
                       <div
-                        className="w-3 h-3 rounded-full"
+                        className="w-2.5 h-2.5 rounded-full"
                         style={{
                           backgroundColor: COLORS[index % COLORS.length],
                         }}
                       ></div>
-                      <h5 className={`${montserrat.className}`}>
+                      <h5 className={`${montserrat.className} text-sm`}>
                         {product.name}
                       </h5>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full"></div>
-                      <span className="text-black/50">{product.value}%</span>
-                    </div>
+                    <span className="text-ink-muted text-sm">
+                      {product.value}%
+                    </span>
                   </li>
                 );
               })}

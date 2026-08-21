@@ -52,6 +52,14 @@ const SideBar = () => {
     });
   }, []);
 
+  const navItems = [
+    { label: "Dashboard", icon: DashboardIcon, active: true },
+    { label: "Transactions", icon: TransactionIcon, active: false },
+    { label: "Schedules", icon: ScheduleIcon, active: false },
+    { label: "Users", icon: UserIcon, active: false },
+    { label: "Settings", icon: SettingsIcon, active: false },
+  ];
+
   return (
     // TODO: create toggle icon for showing and hiding dashboard menu
     <section
@@ -60,50 +68,34 @@ const SideBar = () => {
         document.getElementById("sidebar").style.left = "2rem";
         // console.log(document.getElementById("sidebar").style.left);
       }}
-      className=" bg-black text-white rounded-3xl min-w-[16rem] h-[calc(100%-4rem)] fixed -left-[15rem] z-10 overflow-y-auto transition-all lg:static lg:left-0 lg:h-auto "
+      className="bg-sidebar text-white rounded-3xl min-w-[16rem] h-[calc(100%-4rem)] fixed -left-[15rem] z-10 overflow-y-auto shadow-soft transition-all lg:static lg:left-0 lg:h-auto"
     >
-      <div className="relative p-12 flex flex-col h-full ">
-        {/* <div className=" absolute z-40 bg-red-500 w-4 h-8 -right-2 "></div> */}
-        <h1 className={`${montserrat.className} text-3xl font-bold mb-12`}>
+      <div className="relative p-10 flex flex-col h-full">
+        <h1 className={`${montserrat.className} text-2xl font-bold mb-12 tracking-tight`}>
           Board.
         </h1>
-        <ul className="">
-          <li className="flex gap-8 mb-8 ">
-            <span className="">
-              <DashboardIcon />
-            </span>
-            Dashboard
-          </li>
-          <li className="flex gap-8 mb-8 ">
-            <span className="">
-              <TransactionIcon />
-            </span>
-            Transactions
-          </li>
-          <li className="flex gap-8 mb-8 ">
-            <span className="">
-              <ScheduleIcon />
-            </span>
-            Schedules
-          </li>
-          <li className="flex gap-8 mb-8 ">
-            <span className="">
-              <UserIcon />
-            </span>
-            Users
-          </li>
-          <li className="flex gap-8 mb-8 ">
-            <span className="">
-              <SettingsIcon />
-            </span>
-            Settings
-          </li>
+        <ul className="flex flex-col gap-1.5">
+          {navItems.map(({ label, icon: Icon, active }) => (
+            <li
+              key={label}
+              className={`flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer transition-colors ${
+                active
+                  ? "bg-white/10 text-white"
+                  : "text-white/55 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <span className="shrink-0">
+                <Icon />
+              </span>
+              <span className="text-sm font-medium">{label}</span>
+            </li>
+          ))}
         </ul>
-        <ul className="mt-auto">
-          <li className="mt-4 text-white/80 hover:text-white hover:cursor-pointer">
+        <ul className="mt-auto pt-8 border-t border-white/10">
+          <li className="mt-2 px-4 py-2 text-sm text-white/50 hover:text-white hover:cursor-pointer transition-colors">
             Help
           </li>
-          <li className="mt-4 text-white/80 hover:text-white hover:cursor-pointer">
+          <li className="mt-1 px-4 py-2 text-sm text-white/50 hover:text-white hover:cursor-pointer transition-colors">
             Contact us
           </li>
         </ul>
